@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bd4960e46b0ddd43be102eeb47495dc, type: 3}
+  m_Name: Default
+  m_EditorClassIdentifier: 
+  _playerPrefab: {fileID: 7798849906827782546, guid: 2c3a0882fb1503f4b81cc8a4ca89f558,
+    type: 3}
+  _price: 0
+  _name: Default
+  _description: Default bird

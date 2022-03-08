@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace ArBird.Player
 {
+    [CreateAssetMenu(menuName = "Scriptable Objects/Player Info")]
     public class PlayerInfo : ScriptableObject
     {
         [SerializeField] private GameObject _playerPrefab;
