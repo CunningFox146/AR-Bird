@@ -1,6 +1,5 @@
 ﻿using ArBird.Player;
 using ArBird.Services;
-using UnityEngine;
 using Zenject;
 
 namespace ArBird.Infrastructure

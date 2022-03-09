@@ -17,7 +17,12 @@ namespace ArBird.Player
             _shop = shop;
         }
 
-        private void Awake()
+        private void Start()
+        {
+            SpawnSelectedPlayer();
+        }
+
+        private void SpawnSelectedPlayer()
         {
             Player = Instantiate(_shop.Selected.PlayerPrefab, _spawnPoint, Quaternion.identity);
         }
