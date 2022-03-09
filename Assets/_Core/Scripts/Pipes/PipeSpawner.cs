@@ -50,7 +50,7 @@ namespace ArBird.Pipes
         {
             foreach (var pipe in _pipesQueue)
             {
-                pipe.transform.Translate(Vector3.back * Time.deltaTime * _moveSpeed);
+                pipe.transform.Translate(Vector3.left * Time.deltaTime * _moveSpeed);
             }
         }
 
@@ -69,7 +69,7 @@ namespace ArBird.Pipes
         {
             var newPipe = _pool.Get();
             newPipe.SetCenter(_calculator.Get(), _minTop, _maxTop, _spacing);
-            newPipe.transform.position = Vector3.forward * _bounds.x;
+            newPipe.transform.position = Vector3.right * _bounds.x;
             _pipesQueue.Enqueue(newPipe);
         }
 
@@ -77,7 +77,7 @@ namespace ArBird.Pipes
         private void UpdateLastPipe()
         {
             var lastPipe = _pipesQueue.Peek();
-            if (lastPipe.transform.position.z <= _bounds.y)
+            if (lastPipe.transform.position.x <= _bounds.y)
             {
                 _pipesQueue.Dequeue();
                 _pool.Release(lastPipe);

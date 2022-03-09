@@ -157,6 +157,10 @@ MonoBehaviour:
   _bounds: {x: 10, y: -10}
   _spawnPeriod: 2
   _moveSpeed: 2
+  _spacing: 1
+  _maxTop: 10
+  _minTop: 1
+  _centerRange: 3
 --- !u!4 &29623102
 Transform:
   m_ObjectHideFlags: 0
