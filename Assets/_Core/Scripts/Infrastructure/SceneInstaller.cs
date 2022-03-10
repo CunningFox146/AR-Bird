@@ -1,5 +1,7 @@
-﻿using ArBird.Player;
+﻿using ArBird.Pipes;
+using ArBird.Player;
 using ArBird.Services;
+using UnityEngine.XR.ARFoundation;
 using Zenject;
 
 namespace ArBird.Infrastructure
@@ -8,11 +10,41 @@ namespace ArBird.Infrastructure
     {
         public PlayerSpawner PlayerSpawner { get; private set; }
         public Shop Shop { get; private set; }
+        public ARRaycastManager RaycastManager { get; private set; }
+        public PipeSpawner PipeSpawner { get; private set; }
+        public GameplayService GameplayService { get; private set; }
 
         public override void InstallBindings()
         {
             BindPlayerSpawner();
             BindShop();
+            BindRaycastManager();
+            BindPipeSpawner();
+            BindGameplayService();
+        }
+
+        private void BindGameplayService()
+        {
+            Container.Bind<GameplayService>()
+                           .FromComponentInHierarchy(true)
+                           .AsSingle()
+                           .NonLazy();
+        }
+
+        private void BindPipeSpawner()
+        {
+            Container.Bind<PipeSpawner>()
+                            .FromComponentInHierarchy(true)
+                            .AsSingle()
+                            .NonLazy();
+        }
+
+        private void BindRaycastManager()
+        {
+            Container.Bind<ARRaycastManager>()
+                            .FromComponentInHierarchy(true)
+                            .AsSingle()
+                            .NonLazy();
         }
 
         private void BindShop()

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -20,18 +19,31 @@ namespace ArBird.Pipes
         private IObjectPool<PipeBlock> _pool;
         private Queue<PipeBlock> _pipesQueue = new Queue<PipeBlock>();
         private PipeRangeCalculator _calculator;
+        private float _time;
+
+        public Vector2 Bounds => _bounds;
 
         private void Awake()
         {
             _calculator = new PipeRangeCalculator(_centerRange, _minTop, _maxTop);
 
             CreatePool();
-            StartCoroutine(UpdatePipesCoroutine());
         }
 
         private void Update()
         {
             MovePipes();
+            UpdateCurrentPipes();
+        }
+
+
+        public void Restart()
+        {
+            foreach (var pipe in _pipesQueue)
+            {
+                _pool.Release(pipe);
+            }
+            _time = 0f;
         }
 
         private void CreatePool()
@@ -54,14 +66,14 @@ namespace ArBird.Pipes
             }
         }
 
-        private IEnumerator UpdatePipesCoroutine()
+        private void UpdateCurrentPipes()
         {
-            while (true)
+            _time += Time.deltaTime;
+            if (_time >= _spawnPeriod)
             {
                 SpawnNewPipe();
                 UpdateLastPipe();
-
-                yield return new WaitForSeconds(_spawnPeriod);
+                _time = 0f;
             }
         }
 
