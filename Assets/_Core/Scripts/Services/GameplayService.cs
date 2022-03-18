@@ -21,6 +21,9 @@ namespace ArBird.Services
             _spawner.gameObject.SetActive(true);
         }
 
-        
+        public void StopGame()
+        {
+            _spawner.gameObject.SetActive(false);
+        }
     }
 }

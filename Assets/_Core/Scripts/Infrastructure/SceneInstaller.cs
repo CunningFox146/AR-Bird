@@ -11,6 +11,8 @@ namespace ArBird.Infrastructure
         public PlayerSpawner PlayerSpawner { get; private set; }
         public Shop Shop { get; private set; }
         public ARRaycastManager RaycastManager { get; private set; }
+        public ARPlaneManager PlaneManager { get; private set; }
+        public WorldSpawner WorldSpawner { get; private set; }
         public PipeSpawner PipeSpawner { get; private set; }
         public GameplayService GameplayService { get; private set; }
 
@@ -19,8 +21,26 @@ namespace ArBird.Infrastructure
             BindPlayerSpawner();
             BindShop();
             BindRaycastManager();
+            BindPlaneManager();
             BindPipeSpawner();
             BindGameplayService();
+            BindWorldSpawner();
+        }
+
+        private void BindWorldSpawner()
+        {
+            Container.Bind<WorldSpawner>()
+                       .FromComponentInHierarchy(true)
+                       .AsSingle()
+                       .NonLazy();
+        }
+
+        private void BindPlaneManager()
+        {
+            Container.Bind<ARPlaneManager>()
+                       .FromComponentInHierarchy(true)
+                       .AsSingle()
+                       .NonLazy();
         }
 
         private void BindGameplayService()
